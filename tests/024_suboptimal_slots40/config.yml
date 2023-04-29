@@ -1,0 +1,31 @@
+experiment:
+  name: 024_suboptimal_slots40
+  dir: tests/024_suboptimal_slots40
+  header: 024 Take the optimal configuration and apply it to lesser and higher number of agents
+  description: |
+    Bernoulli vs tSlots
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 1
+    stop: 30
+    step: 1
+  available-slots: 40
+  strategy:
+    evolution:
+      start: 10
+      stop: 10
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 55534
+  execution-cores: 4
+  target-percent: 50
+  agents-for-optimal-calc:  8

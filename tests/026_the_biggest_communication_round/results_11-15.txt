@@ -1,0 +1,10 @@
+Optimal configuration for: slots:300, transmitters:20
+
+DEBUG:root:Iterated 9800000 combinations. Present selects: 10 sequence: (4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10)
+DEBUG:root:Iterated 9900000 combinations. Present selects: 10 sequence: (4, 4, 5, 5, 5, 6, 7, 7, 7, 7, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10)
+DEBUG:root:Iterated 10000000 combinations. Present selects: 10 sequence: (5, 6, 6, 6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10)
+DEBUG:root:Done calculations. slots:300, transmitters:20, selects:10, probability:0.9897466929624589
+Optimal config tSlots (size, probability):		(11, 0.9897657826940434)
+Optimal config Bernoulli (size, probability):	(0.05, 0.93585719381399)
+Ratio: 1.0576034348364138
+time: 322211.1522343159

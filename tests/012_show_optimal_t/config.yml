@@ -1,0 +1,32 @@
+experiment:
+  name: 012_show_optimal_t
+  dir: tests/012_show_optimal_t
+  header: 010 Equal occupation of defined number random slots
+  description: |
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+    Here the calculation is done to show results for optimal t, being less than n/k.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 8
+    stop: 8
+    step: 0
+  available-slots: 40
+  strategy:
+    evolution:
+      start: 1
+      stop: 1
+      step: 1
+    trials-per-strategy: 1
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 123
+  execution-cores: 4
+  good-comb: 8/40, 8/24

@@ -1,0 +1,29 @@
+experiment:
+  name: 021_comparison
+  dir: tests/021_comparison
+  header: 021 comparison of optimal values per configuration
+  description: |
+    Bernoulli vs tSlots
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 15
+    stop: 20
+    step: 5
+  available-slots: 200
+  strategy:
+    evolution:
+      start: 10
+      stop: 10
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 139
+  execution-cores: 4

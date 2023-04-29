@@ -1,0 +1,31 @@
+experiment:
+  name: 027_tslots_slots5000_nodes500
+  dir: tests/027_tslots_slots5000_nodes500
+  header: 027 tslots
+  description: |
+    tSlots
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 500
+    stop: 500
+    step: 0
+  available-slots: 5000
+  strategy:
+    evolution:
+      start: 5
+      stop: 10
+      step: 1
+    trials-per-strategy: 10000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 43214321
+  execution-cores: 3

@@ -1,0 +1,30 @@
+experiment:
+  name: 023_50percent_target
+  dir: tests/023_50percent_target
+  header: 023 search conditions to meet 50 percent communication success probability
+  description: |
+    Bernoulli vs tSlots
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 1
+    stop: 20
+    step: 1
+  available-slots: 1
+  strategy:
+    evolution:
+      start: 10
+      stop: 10
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 55534
+  execution-cores: 4
+  target-percent: 50

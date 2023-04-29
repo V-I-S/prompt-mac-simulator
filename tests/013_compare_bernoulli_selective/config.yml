@@ -1,0 +1,16 @@
+experiment:
+  name: 013_compare_bernoulli_selective
+  dir: tests/013_compare_bernoulli_selective
+  header: Comparison plot of Bernoulli & Selective methods
+  description: |
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+    Here the calculation is done to show results for optimal t, being less than n/k.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  available-slots: 40
+  data:
+    bernoulli: bernoulli_calculation_data.tsv
+    selective: selective_calculation_data.tsv

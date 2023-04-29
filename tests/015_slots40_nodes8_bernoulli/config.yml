@@ -1,0 +1,29 @@
+experiment:
+  name: 015_slots40_nodes8_bernoulli
+  dir: tests/015_slots40_nodes8_bernoulli
+  header: 015 Each slot independently, randomly selected or not with arbitrary plausability
+  description: |
+    Each node runs a Bernoullis trial for each slot independently, with given probability occupying the slot or not.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+  model:
+    network: TdmaNetwork
+    node: IndependentBernoulliTrialNode
+    executor: TdmaExecutor
+  size:
+    start: 8
+    stop: 8
+    step: 0
+  available-slots: 40
+  strategy:
+    evolution:
+      start: 1
+      stop: 40
+      step: 1
+    trials-per-strategy: 10000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 123

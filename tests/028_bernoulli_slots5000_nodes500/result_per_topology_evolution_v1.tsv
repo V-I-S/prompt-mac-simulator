@@ -1,0 +1,2 @@
+slots	network-size	step	#-of-tests	#-comm-success	#-99-percentile	avg-#-msg	avg-deliveries-#
+0	500	2	5000	0	24	500	0

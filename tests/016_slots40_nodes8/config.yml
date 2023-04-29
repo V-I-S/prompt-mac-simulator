@@ -1,0 +1,30 @@
+experiment:
+  name: 016_slots40_nodes8
+  dir: tests/016_slots40_nodes8
+  header: 016 Equal occupation of defined number random slots
+  description: |
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 8
+    stop: 8
+    step: 0
+  available-slots: 40
+  strategy:
+    evolution:
+      start: 1
+      stop: 40
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 563
+  execution-cores: 4

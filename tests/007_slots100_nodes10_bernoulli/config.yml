@@ -1,0 +1,29 @@
+experiment:
+  name:
+  dir: tests/007_slots100_nodes10_bernoulli
+  header: 007 Each slot independently, randomly selected or not with arbitrary plausability
+  description: |
+    Each node runs a Bernoullis trial for each slot independently, with given probability occupying the slot or not.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+  model:
+    network: TdmaNetwork
+    node: IndependentBernoulliTrialNode
+    executor: TdmaExecutor
+  size:
+    start: 10
+    stop: 10
+    step: 0
+  available-slots: 100
+  strategy:
+    evolution:
+      start: 1
+      stop: 40
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 1123

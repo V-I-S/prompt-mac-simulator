@@ -1,0 +1,31 @@
+experiment:
+  name: 020_selective_slots100_nodes_var
+  dir: tests/020_selective_slots100_nodes_var
+  header: 020 t-Slots strategy with variable amount of nodes, 100 static slots
+  description: |
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+    This experiment means to verify impact of non-optimal configuration.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  size:
+    start: 1
+    stop: 30
+    step: 0
+  available-slots: 100
+  strategy:
+    evolution:
+      start: 1
+      stop: 40
+      step: 1
+    trials-per-strategy: 100000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 9135
+  execution-cores: 4

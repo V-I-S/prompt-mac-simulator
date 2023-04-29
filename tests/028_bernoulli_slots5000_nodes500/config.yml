@@ -1,0 +1,31 @@
+experiment:
+  name: 028_bernoulli_slots5000_nodes500
+  dir: tests/028_bernoulli_slots5000_nodes500
+  header: 028 bernoulli
+  description: |
+    Bernoulli Trials
+    Each node runs a Bernoullis trial for each slot independently, with given probability occupying the slot or not.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+  model:
+    network: TdmaNetwork
+    node: IndependentBernoulliTrialNode
+    executor: TdmaExecutor
+  size:
+    start: 500
+    stop: 500
+    step: 0
+  available-slots: 5000
+  strategy:
+    evolution:
+      start: 2
+      stop: 2
+      step: 1
+    trials-per-strategy: 5000
+  valuation:
+    strategy: ValuationStrategy
+    generator: ValuationGenerator
+    max-instances-per-topology: 0
+    max-steps-per-instance: 0
+  sampling-frequency: 0
+  random-seed: 43214321
+  execution-cores: 5
