@@ -2,32 +2,32 @@ import logging
 import random
 from typing import Type, Generator, List, Tuple
 
-from tdma_sim_v1.lab.executors.executor import Executor
-from tdma_sim_v1.metrics.experimentMetrics import ExperimentMetrics
-from tdma_sim_v1.model.networks.network import Network
-from tdma_sim_v1.model.networks.tdmaNetwork import TdmaNetwork
-from tdma_sim_v1.model.nodes.node import Node
-from tdma_sim_v1.lab.topologies.topologyGenerator import TopologyGenerator
-from tdma_sim_v1.model.nodes.tdmaNode import TdmaNode
-from tdma_sim_v1.utils.exceptions.sanityCheckError import SanityCheckError
-from tdma_sim_v1.utils.importUtils import *
-from tdma_sim_v1.utils.progressInsight import ProgressInsight
-from tdma_sim_v1.lab.valuators.valuationGenerator import ValuationGenerator
-from tdma_sim_v1.lab.valuestrat.valuationStrategy import ValuationStrategy
+from tdma_sim_v2.lab.executors.executor import Executor
+from tdma_sim_v2.metrics.experimentMetrics import ExperimentMetrics
+from tdma_sim_v2.model.networks.network import Network
+from tdma_sim_v2.model.networks.tdmaNetwork import TdmaNetwork
+from tdma_sim_v2.model.nodes.node import Node
+from tdma_sim_v2.lab.topologies.topologyGenerator import TopologyGenerator
+from tdma_sim_v2.model.nodes.tSlotsNode import tSlotsNode
+from tdma_sim_v2.utils.exceptions.sanityCheckError import SanityCheckError
+from tdma_sim_v2.utils.importUtils import *
+from tdma_sim_v2.utils.progressInsight import ProgressInsight
+from tdma_sim_v2.lab.valuators.valuationGenerator import ValuationGenerator
+from tdma_sim_v2.lab.valuestrat.valuationStrategy import ValuationStrategy
 
 
 class Experiment:
-    MODULE_NETWORKS = 'tdma_sim_v1.model.networks'
-    MODULE_NODES = 'tdma_sim_v1.model.nodes'
-    MODULE_EXECUTORS = 'tdma_sim_v1.lab.executors'
-    MODULE_TOPOLOGIES = 'tdma_sim_v1.lab.topologies'
-    MODULE_VALUATORS = 'tdma_sim_v1.lab.valuators'
-    MODULE_VALUATION_STRATEGIES = 'tdma_sim_v1.lab.valuestrat'
+    MODULE_NETWORKS = 'tdma_sim_v2.model.networks'
+    MODULE_NODES = 'tdma_sim_v2.model.nodes'
+    MODULE_EXECUTORS = 'tdma_sim_v2.lab.executors'
+    MODULE_TOPOLOGIES = 'tdma_sim_v2.lab.topologies'
+    MODULE_VALUATORS = 'tdma_sim_v2.lab.valuators'
+    MODULE_VALUATION_STRATEGIES = 'tdma_sim_v2.lab.valuestrat'
 
     logger = logging.getLogger(__name__)
 
-    def __init__(self, config: dict):
-        self.node_type: Type[TdmaNode] = class_by_name(self.MODULE_NODES, config['experiment.model.node'])
+    def __init__(self, config: dict, failures_tolerance: int = 0):
+        self.node_type: Type[tSlotsNode] = class_by_name(self.MODULE_NODES, config['experiment.model.node'])
         self.network_type: Type[TdmaNetwork] = class_by_name(self.MODULE_NETWORKS, config['experiment.model.network'])
         self.executor_type: Type[Executor] = class_by_name(self.MODULE_EXECUTORS, config['experiment.model.executor'])
 
@@ -51,7 +51,7 @@ class Experiment:
         random.seed(config['experiment.random-seed'])
         self.banner = config['experiment.header']
         self.description = config['experiment.description']
-        self.metrics = ExperimentMetrics(config['experiment.dir'])
+        self.metrics = ExperimentMetrics(config['experiment.dir'], config['experiment.model.node'], failures_tolerance)
         self.insight = ProgressInsight(self.logger)
         self.iteration = 0
 
@@ -101,4 +101,4 @@ class Experiment:
             self.metrics.record_simulation_details(experiment_id, network, valuation, 'sampling')
 
     def _shall_report_detailed_metrics(self):
-        return self.store_every_nth_test_metrics > 0 and self.iteration % self.store_every_nth_test_metrics == 1
+        return self.store_every_nth_test_metrics > 0 and self.iteration % self.store_every_nth_test_metrics == 0

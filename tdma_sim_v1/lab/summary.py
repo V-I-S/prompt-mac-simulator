@@ -15,7 +15,7 @@ from tdma_sim_v1.utils.exceptions.sanityCheckError import SanityCheckError
 
 class Summary:
     FILE_FIGURE = 'result_visualization.png'
-    FILE_CALCULATION_RESULTS = 'result_calculation_data.tsv'
+    FILE_CALCULATION_RESULTS = 'result_calculation_data_10.tsv'
     FILE_PARTIAL_CALCULATION_RESULTS = 'partial_calculation_data.tsv'
 
     logger = logging.getLogger(__name__)
@@ -60,8 +60,8 @@ class Summary:
         sampling = np.arange(0, self.n_max_sapling + 1, 1)
         params = [[self.n_min_transmitters, self.n_slots, s] for s in sampling]
         print('Obtaining selective method calculation results...')
-        if self.is_calculated_already('result_calculation_data.tsv'):
-            probability_success = self._get_values('result_calculation_data.tsv')['value']
+        if self.is_calculated_already('result_calculation_data_10.tsv'):
+            probability_success = self._get_values('result_calculation_data_10.tsv')['value']
         else:
             probability_success = self._run_in_parallel(params)
             self._store_calculation_to_file('Selective', list(sampling), probability_success)

@@ -12,5 +12,11 @@ experiment:
     executor: TdmaExecutor
   available-slots: 40
   data:
-    bernoulli: bernoulli_calculation_data.tsv
-    selective: selective_calculation_data.tsv
+    title: BT and t-Slots Models Comparison
+    xaxis: 'Expected number of transmissions per agent (BT: p•n, t-Slots: t)'
+    plot1: bernoulli_calculation_data.tsv
+    scaler1: 40
+    label1: Bernoulli-Trials Strategy Calculation
+    plot2: selective_calculation_data.tsv
+    scaler2: 1
+    label2: t-Slots Strategy Calculation

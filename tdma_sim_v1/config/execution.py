@@ -33,6 +33,16 @@ class ExecutionConfig:
             execution-cores:
             target-percent:
             agents-for-optimal-calc:
+              available-slots: 40
+            data:
+              title:
+              xaxis:
+              plot1:
+              scaler1:
+              label1:
+              plot2:
+              scaler2:
+              label2:
     """
 
     config: dict = None

@@ -1,0 +1,22 @@
+experiment:
+  name: 029_bernoulli_slots100_joint_plot
+  dir: tests/029_bernoulli_slots100_joint_plot
+  header: Comparison plot of Bernoulli method
+  description: |
+    Each node tries to allocate a defined count of slots randomly.
+    Success is obtained only when each of nodes hits at least one slot when only it does broadcast.
+    Here the calculation is done to show results for optimal t, being less than n/k.
+  model:
+    network: TdmaNetwork
+    node: TdmaNode
+    executor: TdmaExecutor
+  available-slots: 40
+  data:
+    title: Bernoulli-Trials Strategy (n = 100)
+    xaxis: Agent's transmission probability in the single slot (p)
+    plot1: result_calculation_data_10.tsv
+    scaler1: 1
+    label1: Number of Agents (k) = 10
+    plot2: result_calculation_data_20.tsv
+    scaler2: 1
+    label2: Number of Agents (k) = 20
